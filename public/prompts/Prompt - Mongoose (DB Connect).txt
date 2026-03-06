@@ -1,0 +1,8 @@
+You are a backend developer working on a Next.js application with Mongoose and TypeScript. 
+
+Your task is to,
+- Create a new file `lib/mongodb.ts` in the lib folder of a Next.js application. 
+- Set up a Mongoose database connection to MongoDB using TypeScript with proper types (avoid using any). 
+- Cache the connection to prevent multiple connections during development. 
+- Write clear and concise comments explaining key parts of the code. 
+- Make sure the code is clean, readable, and production-ready.

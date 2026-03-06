@@ -1,0 +1,1 @@
+Create a new file lib/constants.ts in the root lib folder. This file should export an array named events containing real upcoming or popular developer conferences, hackathons, or tech meetups. Use image paths from public/images for the image field. Make sure the data looks realistic and can be directly imported and used in the EventCard component.

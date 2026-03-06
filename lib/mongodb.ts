@@ -33,7 +33,7 @@ if (!cached) {
 // If you use TypeScript strict mode, ensure you provide a fallback or
 // handle the undefined case appropriately when calling connectMongo().
 
-export async function connectMongo(): Promise<Mongoose> {
+export default async function connectDB(): Promise<Mongoose> {
   if (cached?.conn) {
     // If we already have a connection, use it
     return cached.conn;

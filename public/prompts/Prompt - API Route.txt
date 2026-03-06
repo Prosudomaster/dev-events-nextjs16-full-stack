@@ -1,0 +1,12 @@
+You are a backend developer working on a Next.js app with TypeScript and Mongoose. Create a GET API route at `app/api/events/[slug]/route.ts` that returns event details by `slug`.
+
+🛠️ Requirements
+
+* Accept `slug` as a dynamic route parameter.
+* Query the `Event` model and return the matching event as JSON.
+* Use proper TypeScript types (no `any`).
+* Handle validation errors properly (missing or invalid `slug`, event not found, unexpected errors) and return appropriate status codes with clear messages.
+* Ensure code is production-ready, well-structured, type-safe, and includes concise comments.
+
+✅ Final Deliverable:
+A clean, production-level API route that fetches event data by `slug` with robust validation and error handling.
