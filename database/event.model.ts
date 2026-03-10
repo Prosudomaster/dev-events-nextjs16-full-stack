@@ -141,7 +141,7 @@ eventSchema.pre("save", async function () {
       throw new Error("Invalid date format");
     }
 
-    doc.date = parsed.toISOString();
+    doc.date = parsed.toString();
   }
 
   if (doc.isModified("time")) {
