@@ -40,7 +40,6 @@ const EventDetails = async ({ params }: { params: Promise<{ slug: string }> }) =
   cacheLife('hours');
 
   const { slug } = await params;  
-const EventDetails = async () => {
 
    let event;
   try {
@@ -154,5 +153,6 @@ const EventDetails = async () => {
     </section>
   )
 }
+
 
 export default EventDetails
