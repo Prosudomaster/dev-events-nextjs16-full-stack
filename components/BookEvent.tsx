@@ -16,13 +16,13 @@ const BookEvent = ({ eventId, slug }: { eventId: string; slug: string }) => {
     const { success } = await createBooking({ eventId, slug, email });
 
     if (success) {
-      return setSubmitted(true);
-
+      posthog.identify(email, { email });
       posthog.capture('event_booked', { eventId, slug, email });
-    }else {
+      setSubmitted(true);
+    } else {
       console.error('Booking failed');
-      return alert('Booking failed. Please try again later.');
-      posthog.captureException('Booking failed', { eventId, slug, email });
+      posthog.captureException(new Error('Booking failed'), { eventId, slug, email });
+      alert('Booking failed. Please try again later.');
     }
   }
 

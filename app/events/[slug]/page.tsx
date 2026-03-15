@@ -3,6 +3,7 @@ import Image from "next/image";
 import BookEvent from "@/components/BookEvent";
 import { getSimilerEventsBySlug } from "@/lib/actions/event.actions";
 import EventCard from "@/components/EventCard";
+import { getPostHogClient } from "@/lib/posthog-server";
 // import { cacheLife } from "next/cache";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
@@ -63,6 +64,13 @@ const {
     return notFound()
   }
 
+  const posthog = getPostHogClient();
+  posthog.capture({
+    distinctId: "anonymous",
+    event: "event_details_viewed",
+    properties: { slug, title, location, date, mode, tags },
+  });
+  await posthog.shutdown();
 
   const bookings = 10;
 
