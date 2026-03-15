@@ -3,6 +3,7 @@ import Image from "next/image";
 import BookEvent from "@/components/BookEvent";
 import { getSimilerEventsBySlug } from "@/lib/actions/event.actions";
 import EventCard from "@/components/EventCard";
+// import { cacheLife } from "next/cache";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -33,12 +34,30 @@ const EventTags = ({ tags }: { tags: string[] }) => (
 )
 
 const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  // 'use cache';
+  // cacheLife('hours');
+
   const { slug } = await params;  
   const response = await fetch(`${BASE_URL}/api/events/${slug}`, {
     cache: 'no-store'
   });
 
-  const {event: { title, overview, description, image, date, time, location, mode, agenda, audience, tags, organizer } } = await response.json(); 
+  const { event } = await response.json();
+
+const {
+  title,
+  overview,
+  description,
+  image,
+  date,
+  time,
+  location,
+  mode,
+  agenda,
+  audience,
+  tags,
+  organizer
+} = event;
 
   if (!description) {
     return notFound()
@@ -89,14 +108,16 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }> 
 
         <aside className="booking">
           <div className="signup-card">
+
             <h2>Book Your Spot</h2>
+            
             {bookings > 0 ? (
               <p className="text-sm">Join {bookings} people who have already booked their spot!</p>
             ) : (
               <p className="text-sm">Be The first to book your form.</p>
             )}
 
-            <BookEvent />
+            <BookEvent eventId={event._id} slug={event.slug} />
           </div>
         </aside>
 
